@@ -1,0 +1,26 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg
+*.egg-info/
+dist/
+build/
+.env
+.venv/
+*.env
+
+# Colab & Notebooks
+.ipynb_checkpoints/
+*.ipynb~
+
+# VSCode / JetBrains / Mac system files
+.vscode/
+.idea/
+.DS_Store
+
+# Hugging Face API keys or token files
+token.txt
+hf_token.txt
+
+# Streamlit or app state
+.streamlit/
