@@ -29,7 +29,7 @@ meme-generator/
 |------|---------|
 | [Meta LLaMA 3.1–8B Instruct](https://huggingface.co/meta-llama/Llama-3.1-8B-Instruct) | Instruction-tuned text generation via Hugging Face Inference API |
 | [huggingface_hub](https://github.com/huggingface/huggingface_hub) | Model hosting, token management, and API interface |
-| [sentence-transformers](https://www.sbert.net/) | Embedding + semantic similarity for topic classification |
+| [sentence-transformers](https://www.sbert.net/) | Embedding + semantic similarity for topic classification - using "all-MiniLM-L6-v2" |
 | [better-profanity](https://github.com/surge-ai/better-profanity) | Lightweight profanity detection for content safety |
 | [re / regex](https://docs.python.org/3/library/re.html) | Post-processing: caption cleanup and quoted text extraction |
 | [Torch](https://pytorch.org/) | Required backend for sentence-transformers and HF models |

@@ -9,6 +9,7 @@ from transformers import AutoTokenizer, AutoModelForCausalLM
 from sentence_transformers import SentenceTransformer, util
 from better_profanity import profanity
 from huggingface_hub import InferenceClient
+from pathlib import Path
 import torch
 import random
 import os
@@ -37,7 +38,8 @@ def classify_topic_from_input(user_input):
     return APPROVED_PROMPT_TOPICS[best_match_idx] if best_score > 0.4 else None
 
 # Initialize Hugging Face API client for LLaMA 3
-with open("hf_token.txt") as f:
+token_path = Path(__file__).parent.parent / "hf_token.txt"
+with open(token_path) as f:
     HF_TOKEN = f.read().strip()
 
 llama_client = InferenceClient(
@@ -127,7 +129,7 @@ def test_caption_profanity(user_input, num_captions=3):
 BLOCKED_PHRASES = ["erection", "blow me", "nudes", "bang", "morning wood", "bih", "FTW",
                   "boner", "gay", "thicc af", "porn", "drugs", "hangover", 
                   "hungover", "drunk", "get high", "weed", "smoke", "stoned", "stoner",
-                  "stoned af", "drunk af", "beers", "beer", "alcohol", "drinking",]
+                  "stoned af", "drunk af", "beers", "beer", "alcohol", "drinking", "gooning",]
 
 def safe_caption_generator(user_input, num_captions=3):
   for bad in BLOCKED_PHRASES:

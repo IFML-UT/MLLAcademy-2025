@@ -1,6 +1,6 @@
 transformers==4.40.0
 sentence-transformers==2.6.1
-better-profanity==0.7.0
+better_profanity==0.7.0
 torch>=2.7.0
 open_clip_torch==2.23.0
 Pillow>=11.0.0
