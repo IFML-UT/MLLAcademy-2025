@@ -14,6 +14,7 @@ import torch
 import random
 import os
 import re
+import json
 
 # Load embedding model for topic matching
 print("Loading embedding model for semantic topic matching...")
