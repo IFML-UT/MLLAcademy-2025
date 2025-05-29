@@ -39,7 +39,7 @@ def classify_topic_from_input(user_input):
     return APPROVED_PROMPT_TOPICS[best_match_idx] if best_score > 0.4 else None
 
 # Initialize Hugging Face API client for LLaMA 3
-token_path = Path(__file__).parent.parent / "hf_token.txt"
+token_path = Path("../hf_token.txt")
 with open(token_path) as f:
     HF_TOKEN = f.read().strip()
 
@@ -153,3 +153,5 @@ def safe_caption_generator(user_input, num_captions=3):
     raise ValueError("All generated captions failed our safety check!\nPlease try again or pick a new topic.")
 
   return filtered
+
+
