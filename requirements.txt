@@ -4,7 +4,6 @@ better_profanity==0.7.0
 torch>=2.7.0
 open_clip_torch==2.23.0
 Pillow>=11.0.0
-streamlit>=1.31.0
 accelerate>=0.28.0
 huggingface_hub>=0.22.2
 ipywidgets==7.6.5

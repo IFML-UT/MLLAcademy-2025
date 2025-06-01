@@ -1,8 +1,17 @@
 
 # 🤖 AI Meme Generator Project
 
-Welcome to the AI Meme Generator project, built as part of the UT Austin Machine Learning Summer Academy! 
-This multi-modal machine learning project allows students to generate meme captions from safe prompts, match them to pre-approved meme templates using OpenCLIP, and deploy their own working meme generator app using Streamlit Cloud.
+Welcome to the **AI Meme Generator project**, built as part of the UT Austin Machine Learning Summer Academy! 
+
+This project guides students through building a fun, safe, and AI-powered meme generator using open-source models and free-tier tools.
+
+This multi-modal machine learning project allows students to generate meme captions from safe prompts, and match them to pre-approved meme templates using OpenCLIP.
+
+Students will:
+- Generate meme-worthy captions from text prompts.
+- Select the best caption and match it to a semantically relevant image.
+- Create and download a final meme combining the AI-generated text and image.
+
 > _This lab is built and supported by the Insitute for Foundations of Machine Learning (IFML)_
 
 ---
@@ -10,15 +19,24 @@ This multi-modal machine learning project allows students to generate meme capti
 ## 📚 Project Structure
 
 ```
-meme-generator/
-├── app.py                       # Streamlit app for deployment (Lab D)
-├── images/                     # Pre-approved meme template images
-├── notebooks/
-│   └── meme_generator.ipynb    # Google Colab notebook (Labs A–C)
-├── utils/
-│   └── safe_caption_generator.py  # Handles safe prompt and caption generation and filtering
-├── requirements.txt            # Libraries needed for local or Streamlit use
-└── README.md
+MLLAcademy-2025/
+├─Lab1_MEMEGEN
+   ├── fonts/
+       └── impact.ttf
+   ├── images/
+       └── (our image pool for meme creation [curated])
+   ├── notebook/
+       └── 1_meme_generator_inst.ipynb
+       └── 2_meme_generator_A.ipynb
+       └── 3_final_meme_assembly.ipynb
+    ├── utils/
+   │   └── safe_caption_generator.py
+   ├── requirements.txt
+   ├── README.md
+   ├── selected_caption.json (generated)
+   ├── selected_image.json (generated)
+   ├── top_images.json (generated)
+   └── captions.json (generated)
 ```
 
 ---
@@ -28,48 +46,98 @@ meme-generator/
 | Tool | Purpose |
 |------|---------|
 | [Meta LLaMA 3.1–8B Instruct](https://huggingface.co/meta-llama/Llama-3.1-8B-Instruct) | Instruction-tuned text generation via Hugging Face Inference API |
+| [mistralai/Mistral-7B-Instruct-v0.3](https://huggingface.co/mistralai/Mistral-7B-Instruct-v0.3) | Lightweight, chat-friendly model for Colab environments |
 | [huggingface_hub](https://github.com/huggingface/huggingface_hub) | Model hosting, token management, and API interface |
 | [sentence-transformers](https://www.sbert.net/) | Embedding + semantic similarity for topic classification - using "all-MiniLM-L6-v2" |
 | [better-profanity](https://github.com/surge-ai/better-profanity) | Lightweight profanity detection for content safety |
 | [re / regex](https://docs.python.org/3/library/re.html) | Post-processing: caption cleanup and quoted text extraction |
-| [Torch](https://pytorch.org/) | Required backend for sentence-transformers and HF models |
+| [Torch](https://pytorch.org/) | Backend for sentence-transformers and HF models |
 | [OpenCLIP](https://github.com/mlfoundations/open_clip) | Caption-to-image similarity for meme image selection |
 | [Pillow (PIL)](https://python-pillow.org/) | Image rendering and meme creation |
-| [Streamlit](https://streamlit.io/) | (Optional - Lab D) App UI + student portfolio deployment |
+
+---
+## 🧠 Lab Components
+
+### 1️⃣ `safe_caption_generator.py`
+- Python module that:
+  - Detects runtime environment (local or Colab).
+  - Dynamically selects the appropriate AI model for inference:
+    - **Local (Jupyter)**: `meta-llama/Llama-3.1-8B-Instruct`.
+    - **Colab**: `mistralai/Mistral-7B-Instruct-v0.3`.
+  - Implements a safe caption generation pipeline:
+    - Semantic topic matching against a list of **approved topics**.
+    - Profanity filtering and blocked phrase detection.
+    - AI caption generation via Hugging Face Inference API.
+
+### 2️⃣ Instructor Notebook (`1_meme_generator_inst.ipynb`)
+- Step-by-step Jupyter Notebook for getting started with text generation:
+  - Guides students through generating captions from prompts.
+  - Handles Hugging Face token input for API based inference
+  - Saves captions to a JSON file for downstream use.
+
+### 3️⃣ Student Notebooks (# 2 & # 3)
+- **Notebook A**: Caption Generation + Image Search
+  - Loads pre-generated captions.
+  - Lets students select the best caption.
+  - Searches a local image set for semantically matching images using **OpenCLIP**.
+  - Lets students pick the best image.
+
+- **Notebook B**: Final Meme Assembly
+  - Loads the selected caption and image.
+  - Combines them into a final meme.
+  - Outputs the meme as a downloadable file.
 
 ---
 
-## 🚀 How to Run (Streamlit Deployment)
+## 🧪 Setup Instructions:
 
-1. **Clone this repo** or create a GitHub copy under your own account.
-2. Go to [Streamlit Cloud](https://streamlit.io/cloud).
-3. Click **"New App"** and connect your GitHub repo.
-4. Set the entry point to `app.py`.
-5. Click **Deploy**.
-6. Your live app will allow users to:
-   - Choose a safe meme topic
-   - Generate a caption using AI
-   - Match it to a meme image
-   - Display the final meme
+### Prerequisites
+- Python 3.11 or later.
+- Free or paid Hugging Face account with API token:
+  - [Sign up for Hugging Face](https://huggingface.co/join)
+  - [Get your token](https://huggingface.co/settings/tokens)
+
+  ### Running Locally (Jupyter Notebook)
+1. Clone this repository:
+   ```bash
+   git clone https://github.com/IFML-UT/MLLAcademy-2025.git
+   ```
+
+2. Install dependencies:
+```
+pip install -r requirements.txt
+```
+
+3. Run the first, instructor notebook:
+```
+jupyter notebook
+```
+
+4. Follow the prompts to input your Hugging Face token.
+
+### Running in Google Colab:
+1. Open the instructor notebook in Colab using the "open with GitHub" option.
+2. Follow on screen prompts and enter the Hugging Face token shared with you during lab.
+3. Proceed through the lab as directed.
 
 ---
 
-## 🧪 How to Use in Google Colab (Labs A–C)
+## 🔐 Environment Detection Logic
+This project automatically adapts based on your runtime:
+- `local`: (Jupyter or VS Code): Uses LLaMA 3.1 8B model (`text-generation`).
+- `colab`: (Google Colab free): Uses Mistral 7B Instruct v0.3 model (`conversational`).
 
-1. Open [Google Colab](https://colab.research.google.com/)
-2. Navigate to the GitHub tab
-3. Paste your GitHub repo URL and open `notebooks/meme_generator.ipynb`
-4. Run the notebook step-by-step:
-   - Generate a caption
-   - Optionally stylize it
-   - Match it with OpenCLIP
-   - Output a meme
+---
+
+## 🚫 Safety Features
+✅ Profanity filtering via `better_profanity`
+✅ Blocked phrase list (e.g., NSFW terms, slurs, inappropriate language)
+✅ Topic matching to a whitelisted list of approved topics
 
 ---
 
 ## 📦 requirements.txt
 
-This is used for local testing or Streamlit app builds.
 
 ```
 transformers==4.40.0
