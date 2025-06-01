@@ -48,7 +48,7 @@ HF_TOKEN = token.strip() if 'token' in locals() else HF_TOKEN
 
 # --- Model Selection Based on Environment ---
 if env == "colab":
-    model_name = "deepseek-ai/deepseek-coder-7b-instruct-v1.5"
+    model_name = "mistralai/Mistral-7B-Instruct-v0.3"
 else:
     model_name = "meta-llama/Llama-3.1-8B-Instruct"
 
