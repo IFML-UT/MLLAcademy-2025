@@ -12,7 +12,7 @@ Students will:
 - Select the best caption and match it to a semantically relevant image.
 - Create and download a final meme combining the AI-generated text and image.
 
-> _This lab is built and supported by the Insitute for Foundations of Machine Learning (IFML)_
+> _This lab is built and supported by the Insitute for Foundations of Machine Learning (IFML)_ | https://ifml.institute/
 
 ---
 
