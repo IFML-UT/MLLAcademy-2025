@@ -49,8 +49,10 @@ HF_TOKEN = token.strip() if 'token' in locals() else HF_TOKEN
 # --- Model Selection Based on Environment ---
 if env == "colab":
     model_name = "mistralai/Mistral-7B-Instruct-v0.3"
+    print(f"🧠 We'll be using {model_name} for our LLM")
 else:
     model_name = "meta-llama/Llama-3.1-8B-Instruct"
+    print(f"🧠 We'll be using {model_name} for our LLM")
 
 # --- Initialize HF InferenceClient ---
 llm_client = InferenceClient(model=model_name, token=HF_TOKEN)
@@ -93,11 +95,13 @@ def llm_caption_generator(user_input, num_captions=3):
 
         if LLM_MODE == "conversational":
             response = llm_client.chat_completion(
-                messages=[{"role": "user", "content": prompt}],
-                max_tokens=40,
-                temperature=1.0,
-                top_p=0.95
+            messages=[{"role": "user", "content": prompt}],
+            max_new_tokens=40,
+            temperature=1.0,
+            top_p=0.95,
+            seed=seed  # Add seed for reproducibility/randomness if supported
             )
+
             output = response.choices[0].message["content"].strip()
         else:
             response = llm_client.text_generation(
