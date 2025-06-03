@@ -96,7 +96,7 @@ def llm_caption_generator(user_input, num_captions=3):
         if LLM_MODE == "conversational":
             response = llm_client.chat_completion(
             messages=[{"role": "user", "content": prompt}],
-            max_new_tokens=40,
+            max_tokens=40,
             temperature=1.0,
             top_p=0.95,
             seed=seed  # Add seed for reproducibility/randomness if supported
