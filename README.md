@@ -16,7 +16,7 @@ Students will:
 
 ---
 
-## 📚 Project Structure
+## Project Structure
 
 ```
 MLLAcademy-2025/
@@ -56,7 +56,7 @@ MLLAcademy-2025/
 | [Pillow (PIL)](https://python-pillow.org/) | Image rendering and meme creation |
 
 ---
-## 🧠 Lab Components
+## Lab Components
 
 ### 1️⃣ Behind the Scenes - Inference and Safe Caption Generation
 #### `safe_caption_generator.py`
@@ -133,7 +133,7 @@ jupyter `[your directory]reference_notebooks/1_meme_generator_inst.ipynb
 
 ---
 
-## 🔐 Environment Detection Logic
+## Environment Detection Logic
 This project automatically adapts based on your runtime:
 - `local`: (Jupyter or VS Code): Uses LLaMA 3.1 8B model (`text-generation`).
 - `colab`: (Google Colab free): Uses Mistral 7B Instruct v0.3 model (`conversational`).
@@ -147,19 +147,20 @@ This project automatically adapts based on your runtime:
 
 ---
 
-## 📦 requirements.txt
+## requirements.txt
 
 
 ```
-transformers==4.40.0
+transformers==4.50.0
 sentence-transformers==2.6.1
-better-profanity==0.7.0
+better_profanity==0.7.0
 torch>=2.7.0
 open_clip_torch==2.23.0
 Pillow>=11.0.0
-streamlit>=1.31.0
 accelerate>=0.28.0
 huggingface_hub>=0.22.2
+ipywidgets==7.6.5
+tqdm>=4.66.1
 ```
 
 ---
@@ -174,4 +175,4 @@ We recommend students write a short reflection on:
 
 ---
 
-Have fun and build responsibly! 🧠💡
+Have fun and build responsibly! 🤘
