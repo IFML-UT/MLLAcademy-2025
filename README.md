@@ -58,7 +58,8 @@ MLLAcademy-2025/
 ---
 ## 🧠 Lab Components
 
-### 1️⃣ `safe_caption_generator.py`
+### 1️⃣ Behind the Scenes - Inference and Safe Caption Generation
+#### `safe_caption_generator.py`
 - Python module that:
   - Detects runtime environment (local or Colab).
   - Dynamically selects the appropriate AI model for inference:
@@ -69,13 +70,23 @@ MLLAcademy-2025/
     - Profanity filtering and blocked phrase detection.
     - AI caption generation via Hugging Face Inference API.
 
-### 2️⃣ Instructor Notebook (`1_meme_generator_inst.ipynb`)
+### 2️⃣ Instructor Notebook
+#### `1_meme_generator_inst.ipynb`
 - Step-by-step Jupyter Notebook for getting started with text generation:
   - Guides students through generating captions from prompts.
   - Handles Hugging Face token input for API based inference
   - Saves captions to a JSON file for downstream use.
 
-### 3️⃣ Student Notebooks (# 2 & # 3)
+### 3️⃣ Student Notebook
+#### `0_StudentLab-ColabNotebook.ipynb`
+This is your "all in one notebook, ideal for running in a single Colab notebook.
+This notebook generates captions, tests captions against image search using OpenCLIP, 
+and allows you to easily combine the text and image selections using `ipywidget` within
+the Google Colab UI.
+
+### Reference Notebooks:
+The same content as the **Student Notebook** above, but split across 2 notebooks, 
+one for caption generation and image search, and the other for putting it all together.
 - **Notebook A**: Caption Generation + Image Search
   - Loads pre-generated captions.
   - Lets students select the best caption.
@@ -110,12 +121,12 @@ pip install -r requirements.txt
 
 3. Run the first, instructor notebook:
 ```
-jupyter notebook
+jupyter `[your directory]reference_notebooks/1_meme_generator_inst.ipynb
 ```
 
 4. Follow the prompts to input your Hugging Face token.
 
-### Running in Google Colab:
+### If Running in Google Colab:
 1. Open the instructor notebook in Colab using the "open with GitHub" option.
 2. Follow on screen prompts and enter the Hugging Face token shared with you during lab.
 3. Proceed through the lab as directed.
